@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Fabrice Faniry RANDT | Portfolio Expert Digital</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #0070f3;
+            --accent: #7928ca;
+            --bg: #030712;
+            --card-bg: rgba(17, 24, 39, 0.6);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-dim: #94a3b8;
+        }
+
+        * { box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg); color: #f8fafc; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
+
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.3; }
+
+        .main-header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-links a { color: var(--text-dim); text-decoration: none; margin-left: 25px; font-size: 13px; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- NOUVELLE SECTION HERO --- */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 100px 5% 50px; }
+        .hero-container { max-width: 1200px; display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
+        
+        .profile-img { 
+            width: 320px; height: 320px; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            object-fit: cover; border: 5px solid var(--primary); animation: morph 8s ease-in-out infinite;
+        }
+        @keyframes morph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+        }
+        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin: 0; }
+        
+        .typing-effect { border-right: 3px solid var(--primary); animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        /* --- BENTO GRID SYSTEM --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .card { 
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 28px; 
+            padding: 35px; transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1); position: relative; overflow: hidden;
+        }
+        .card:hover { border-color: var(--primary); transform: translateY(-8px); background: rgba(255,255,255,0.05); }
+        
+        .tag { background: rgba(0, 112, 243, 0.15); color: #60a5fa; padding: 5px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; letter-spacing: 1px; display: inline-block; }
+        
+        .skill-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px; }
+        .skill-item i { color: var(--primary); margin-top: 4px; }
+
+        .footer { background: #010409; border-top: 1px solid var(--border); padding: 80px 5% 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <header class="main-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="MonLogo.png" alt="Logo" style="height:35px" onerror="this.src='https://cdn-icons-png.flaticon.com/512/606/606203.png'">
+            <span style="font-weight: 800; font-size: 1.2rem; letter-spacing: 1px;">RANDT.</span>
+        </div>
+        <nav class="nav-links w3-hide-small">
+            <a href="#home">ACCUEIL</a>
+            <a href="#parcours">FORMATION</a>
+            <a href="#expertise">EXPERTISE</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="profile-box reveal">
+                <img src="PHOTOBOKY.jpg" alt="Fabrice Faniry" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500'">
+            </div>
+            <div class="hero-text">
+                <div class="tag" style="margin-bottom: 15px;">DÉVELOPPEUR WEB FULLSTACK</div>
+                <h1>Fabrice Faniry<br><span style="color:var(--primary)">RANDT</span></h1>
+                <p style="font-size: 1.2rem; color: var(--text-dim); max-width: 550px; margin: 20px 0;">
+                    Expert en  <span class="typing-effect" id="type"></span><br>
+                    Diplômé en Ingénierie Physique de Signaux et Système.
+                </p>
+                <div style="display: flex; gap: 15px; margin-top: 30px;">
+                    <a href="#parcours" class="w3-button w3-blue w3-round-xxlarge w3-padding-large"><b>MON PARCOURS</b></a>
+                    <a href="mailto:randtfabricefaniry@gmail.com" class="w3-button w3-white w3-round-xxlarge w3-padding-large"><b>CONTACT</b></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="w3-padding-64" id="parcours">
+        <div class="w3-content" style="max-width:1200px">
+            <h2 class="w3-center reveal" style="font-weight: 800; margin-bottom: 50px;">Formation <span style="color:var(--primary)">Académique</span></h2>
+            <div class="bento-grid">
+                <div class="card reveal">
+                    <div class="tag">2025</div>
+                    <h3 style="font-weight: 800; margin-top:10px">Licence Professionnelle</h3>
+                    <p style="color: var(--primary); font-weight: 600;">Université d'Antananarivo</p>
+                    <p class="w3-small" style="color: var(--text-dim); line-height: 1.6;">
+                        <b>Ingénierie en Physique de Signaux et Système (LIPSS)</b>.<br>
+                        Spécialisation en traitement du signal, électronique embarquée et systèmes automatisés.
+                    </p>
+                </div>
+                <div class="card reveal">
+                    <div class="tag">2023</div>
+                    <h3 style="font-weight: 800; margin-top:10px">Bases de Données</h3>
+                    <p style="color: var(--primary); font-weight: 600;">BIT Informatique Tsiadana</p>
+                    <p class="w3-small" style="color: var(--text-dim); line-height: 1.6;">
+                        Formation intensive sur <b>Microsoft Access</b>. Maîtrise de la modélisation SQL et de la gestion de structures de données complexes.
+                    </p>
+                </div>
+                <div class="card reveal">
+                    <div class="tag">2020</div>
+                    <h3 style="font-weight: 800; margin-top:10px">Baccalauréat Scientifique</h3>
+                    <p style="color: var(--primary); font-weight: 600;">Lycée Nanisana</p>
+                    <p class="w3-small" style="color: var(--text-dim); line-height: 1.6;">
+                        Série scientifique (S) obtenue avec la mention <b>Assez Bien</b>. Bases solides en mathématiques et physique.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-padding-64" id="expertise">
+        <div class="w3-content" style="max-width:1200px">
+            <h2 class="w3-center reveal" style="font-weight: 800; margin-bottom: 50px;">Expertise <span style="color:var(--primary)">Technique</span></h2>
+            <div class="bento-grid">
+                <div class="card reveal">
+                    <i data-lucide="code-2" style="width:40px; height:40px; color:var(--primary)"></i>
+                    <h3 style="font-weight: 800;">Développement Fullstack</h3>
+                    <div class="skill-item">
+                        <i class="fa fa-check w3-small"></i>
+                        <span class="w3-small"><b>Frameworks :</b> Symfony, React/JS, WordPress (Expertise Orange Digital Center).</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fa fa-check w3-small"></i>
+                        <span class="w3-small"><b>Langages :</b> Python, C++, SQL, PHP, HTML5/CSS3.</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fa fa-check w3-small"></i>
+                        <span class="w3-small"><b>Projets :</b> App Laverie et plateforme E-commerce <b>Harena Cosmétiques</b>.</span>
+                    </div>
+                </div>
+
+                <div class="card reveal">
+                    <i data-lucide="palette" style="width:40px; height:40px; color:var(--accent)"></i>
+                    <h3 style="font-weight: 800;">Design & Graphisme</h3>
+                    <div class="skill-item">
+                        <i class="fa fa-check w3-small"></i>
+                        <span class="w3-small"><b>Logiciels :</b> Maîtrise experte de Photoshop et Illustrator (Adobe).</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fa fa-check w3-small"></i>
+                        <span class="w3-small"><b>Supports :</b> Logos, chartes graphiques, cartes de visite et maquettes UI.</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fa fa-check w3-small"></i>
+                        <span class="w3-small"><b>Web Design :</b> Conception de prototypes interactifs centrés sur l'utilisateur.</span>
+                    </div>
+                </div>
+
+                <div class="card reveal">
+                    <i data-lucide="cpu" style="width:40px; height:40px; color:#10b981"></i>
+                    <h3 style="font-weight: 800;">Maintenance & Cyber</h3>
+                    <div class="skill-item">
+                        <i class="fa fa-check w3-small"></i>
+                        <span class="w3-small">Maintenance préventive et curative des systèmes informatiques.</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fa fa-check w3-small"></i>
+                        <span class="w3-small">Configuration réseaux et notions avancées en cybersécurité.</span>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fa fa-check w3-small"></i>
+                        <span class="w3-small">Capacité d'adaptation rapide aux nouvelles technologies.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div>
+                <h2 style="font-weight: 800; margin:0">RANDT.</h2>
+                <p style="color:var(--text-dim); font-size: 14px; margin-top:20px;">
+                    Expert Digital diplômé en électronique et informatique. Disponible pour transformer vos défis techniques en succès.
+                </p>
+                <div style="margin-top:25px">
+                    <a href="https://github.com/FabriceFaniryRANDT4050" style="color:white; font-size:20px; margin-right:20px"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/fabrice-faniry-randriamahatratra-8aa11727" style="color:white; font-size:20px"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 style="font-weight: 800; margin-bottom:25px">Contact</h4>
+                <p class="w3-small" style="color:var(--text-dim)"><i class="fa fa-map-marker-alt w3-text-blue"></i> &nbsp; Ambatomaro, Antananarivo</p>
+                <p class="w3-small" style="color:var(--text-dim)"><i class="fa fa-phone w3-text-blue"></i> &nbsp; +261 38 41 570 73</p>
+                <p class="w3-small" style="color:var(--text-dim)"><i class="fa fa-envelope w3-text-blue"></i> &nbsp; randtfabricefaniry@gmail.com</p>
+            </div>
+            <div>
+                <h4 style="font-weight: 800; margin-bottom:25px">Services</h4>
+                <ul style="list-style:none; padding:0; font-size:13px; color:var(--text-dim)">
+                    <li style="margin-bottom:10px">Applications Web Métier</li>
+                    <li style="margin-bottom:10px">Identité Visuelle / Print</li>
+                    <li style="margin-bottom:10px">Architecture Systèmes</li>
+                </ul>
+            </div>
+        </div>
+        <div class="w3-center w3-padding-32" style="border-top:1px solid var(--border); margin-top:50px; font-size:11px; color:var(--text-dim)">
+            © 2026 Fabrice Faniry RANDTRIAMAHATRATRA | Expert Tech & Design.
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Animation de texte (Typing Effect)
+        const typeTarget = document.getElementById('type');
+        const words = ["Symfony & React", "Design Graphique", "Solutions Métiers", "Ingénierie LIPSS"];
+        let wordIdx = 0, charIdx = 0, isDeleting = false;
+
+        function type() {
+            const currentWord = words[wordIdx];
+            if (isDeleting) {
+                typeTarget.textContent = currentWord.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                typeTarget.textContent = currentWord.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            if (!isDeleting && charIdx === currentWord.length) {
+                isDeleting = true;
+                setTimeout(type, 2000);
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                wordIdx = (wordIdx + 1) % words.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
+        }
+        type();
+
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Background Particles
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let particles = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(0, 112, 243, 0.5)';
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
