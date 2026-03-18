@@ -25,24 +25,27 @@
 
         #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.3; pointer-events: none; }
 
-        /* HEADER RESPONSIVE */
+        /* HEADER & NAVIGATION */
         .main-header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border); padding: 10px 5%;
+            background: rgba(3, 7, 18, 0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .nav-links { display: flex; gap: 20px; }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
         .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* --- HERO SECTION RESPONSIVE --- */
+        .hamburger { display: none; cursor: pointer; color: white; font-size: 1.5rem; z-index: 1001; }
+
+        /* HERO SECTION */
         .hero { 
             min-height: 100vh; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            padding: 120px 5% 60px; 
+            padding: 140px 5% 80px; 
         }
         .hero-container { 
             max-width: 1200px; 
@@ -55,12 +58,9 @@
         
         .profile-box { flex: 1; display: flex; justify-content: center; }
         .profile-img { 
-            width: 100%;
-            max-width: 350px; 
-            aspect-ratio: 1/1;
+            width: 100%; max-width: 350px; aspect-ratio: 1/1;
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            object-fit: cover; 
-            border: 5px solid var(--primary); 
+            object-fit: cover; border: 5px solid var(--primary); 
             animation: morph 8s ease-in-out infinite;
             box-shadow: 0 0 50px rgba(0, 112, 243, 0.2);
         }
@@ -70,64 +70,61 @@
         }
 
         .hero-text { flex: 1.2; }
-        .hero-text h1 { font-size: clamp(2rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin: 0; }
+        .hero-text h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin: 0; }
         .typing-effect { border-right: 3px solid var(--primary); animation: blink 0.7s infinite; }
         @keyframes blink { 50% { border-color: transparent; } }
 
-        /* --- BENTO GRID SYSTEM RESPONSIVE --- */
+        /* BENTO GRID SYSTEM */
         .bento-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(3, 1fr); 
             gap: 20px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 20px; 
+            max-width: 1200px; margin: 0 auto; padding: 20px; 
         }
         .card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--border); 
-            border-radius: 24px; 
-            padding: 30px; 
-            transition: 0.4s ease; 
-            position: relative; 
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            background: var(--card-bg); border: 1px solid var(--border); 
+            border-radius: 24px; padding: 30px; transition: 0.4s ease; 
+            display: flex; flex-direction: column; height: 100%;
         }
         .card:hover { border-color: var(--primary); transform: translateY(-5px); background: rgba(255,255,255,0.05); }
         
-        .tag { background: rgba(0, 112, 243, 0.15); color: #60a5fa; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 15px; }
+        .tag { background: rgba(0, 112, 243, 0.15); color: #60a5fa; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 15px; width: fit-content; }
         .skill-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
         .skill-item i { color: var(--primary); margin-top: 4px; font-size: 0.9rem; }
 
-        /* --- FOOTER GRID --- */
+        /* FOOTER */
         .footer { background: #010409; border-top: 1px solid var(--border); padding: 60px 5% 30px; }
         .footer-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 40px; 
-            max-width: 1200px; 
-            margin: 0 auto; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 40px; max-width: 1200px; margin: 0 auto; 
         }
 
-        /* --- ANIMATIONS DE SCROLL --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- MEDIA QUERIES --- */
         @media (max-width: 992px) {
-            .hero-container { flex-direction: column; text-align: center; gap: 40px; }
-            .hero-text { order: 2; }
+            .hero-container { flex-direction: column; text-align: center; }
+            .hero-text { order: 2; display: flex; flex-direction: column; align-items: center; }
             .profile-box { order: 1; }
-            .nav-links { display: none; } /* On cache le menu sur petit mobile pour simplifier */
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; flex-direction: column;
+                background: rgba(3, 7, 18, 0.98); width: 100%; height: 100vh;
+                padding: 100px 40px; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                backdrop-filter: blur(20px); text-align: center;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.5rem; }
         }
 
-        @media (max-width: 480px) {
-            .hero { padding-top: 100px; }
-            .hero-text h1 { font-size: 2.2rem; }
-            .card { padding: 20px; }
+        @media (max-width: 600px) {
             .bento-grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .footer-grid { text-align: center; }
+            .footer-grid div { align-items: center; }
         }
     </style>
 </head>
@@ -137,10 +134,15 @@
 
     <header class="main-header">
         <div style="display: flex; align-items: center; gap: 12px;">
-            <img src="MonLogo.png" alt="Logo" style="height:30px" onerror="this.src='https://cdn-icons-png.flaticon.com/512/606/606203.png'">
-            <span style="font-weight: 800; font-size: 1.1rem; letter-spacing: 1px;">RANDT.</span>
+            <img src="MonLogo.png" alt="Logo" style="height:35px" onerror="this.src='https://cdn-icons-png.flaticon.com/512/606/606203.png'">
+            <span style="font-weight: 800; font-size: 1.2rem; letter-spacing: 1px;">RANDT.</span>
         </div>
-        <nav class="nav-links">
+        
+        <div class="hamburger" id="hamburger">
+            <i class="fa fa-bars"></i>
+        </div>
+
+        <nav class="nav-links" id="nav-menu">
             <a href="#home">ACCUEIL</a>
             <a href="#parcours">PARCOURS</a>
             <a href="#projets">PROJETS</a>
@@ -153,11 +155,11 @@
             <div class="hero-text reveal">
                 <div class="tag">FULLSTACK DEVELOPER & LIPSS</div>
                 <h1>Fabrice Faniry<br><span style="color:var(--primary)">RANDT</span></h1>
-                <p style="font-size: 1.1rem; color: var(--text-dim); max-width: 500px; margin: 20px auto 30px;">
+                <p style="font-size: 1.1rem; color: var(--text-dim); max-width: 500px; margin: 20px 0 30px;">
                     Expert en <span class="typing-effect" id="type"></span><br>
                     Diplômé en Ingénierie Physique de Signaux et Système.
                 </p>
-                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
                     <a href="#projets" class="w3-button w3-blue w3-round-xxlarge w3-padding-large"><b>RÉALISATIONS</b></a>
                     <a href="mailto:randtfabricefaniry@gmail.com" class="w3-button w3-white w3-round-xxlarge w3-padding-large"><b>CONTACT</b></a>
                 </div>
@@ -232,13 +234,13 @@
                 </div>
                 <div class="card reveal">
                     <i data-lucide="palette" style="width:35px; height:35px; color:var(--accent); margin-bottom:15px"></i>
-                    <h3 style="font-weight: 800;">Design Graphique</h3>
+                    <h3 style="font-weight: 800; margin-top:0">Design Graphique</h3>
                     <div class="skill-item"><i class="fa fa-check"></i><span class="w3-small">Photoshop & Illustrator (Adobe).</span></div>
                     <div class="skill-item"><i class="fa fa-check"></i><span class="w3-small">UI/UX Design & Chartes Graphiques.</span></div>
                 </div>
                 <div class="card reveal">
                     <i data-lucide="cpu" style="width:35px; height:35px; color:#10b981; margin-bottom:15px"></i>
-                    <h3 style="font-weight: 800;">Maintenance & IoT</h3>
+                    <h3 style="font-weight: 800; margin-top:0">Maintenance & IoT</h3>
                     <div class="skill-item"><i class="fa fa-check"></i><span class="w3-small">IoT (ESP32) & Reconnaissance Faciale.</span></div>
                     <div class="skill-item"><i class="fa fa-check"></i><span class="w3-small">Cybersecurity CTF (Root-Me).</span></div>
                 </div>
@@ -281,7 +283,26 @@
     <script>
         lucide.createIcons();
 
-        // Animation de texte (Typing Effect)
+        // GESTION DU MENU MOBILE
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.querySelector('i').classList.toggle('fa-bars');
+            hamburger.querySelector('i').classList.toggle('fa-times');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.querySelector('i').classList.add('fa-bars');
+                hamburger.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // TYPING EFFECT
         const typeTarget = document.getElementById('type');
         const words = ["Symfony & React", "Design Graphique", "Ingénierie IoT", "Cybersécurité"];
         let wordIdx = 0, charIdx = 0, isDeleting = false;
@@ -290,18 +311,13 @@
             const currentWord = words[wordIdx];
             typeTarget.textContent = isDeleting ? currentWord.substring(0, charIdx - 1) : currentWord.substring(0, charIdx + 1);
             charIdx = isDeleting ? charIdx - 1 : charIdx + 1;
-
-            if (!isDeleting && charIdx === currentWord.length) {
-                isDeleting = true; setTimeout(type, 2000);
-            } else if (isDeleting && charIdx === 0) {
-                isDeleting = false; wordIdx = (wordIdx + 1) % words.length; setTimeout(type, 500);
-            } else {
-                setTimeout(type, isDeleting ? 50 : 100);
-            }
+            if (!isDeleting && charIdx === currentWord.length) { isDeleting = true; setTimeout(type, 2000); }
+            else if (isDeleting && charIdx === 0) { isDeleting = false; wordIdx = (wordIdx + 1) % words.length; setTimeout(type, 500); }
+            else { setTimeout(type, isDeleting ? 50 : 100); }
         }
         type();
 
-        // Reveal Animation on Scroll
+        // REVEAL ON SCROLL
         function reveal() {
             document.querySelectorAll(".reveal").forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add("active");
@@ -310,22 +326,23 @@
         window.addEventListener("scroll", reveal);
         window.onload = reveal;
 
-        // Background Particles
+        // BACKGROUND PARTICLES
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        function initCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+
         let particles = [];
         class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2; this.speedX = Math.random() * 0.4 - 0.2; this.speedY = Math.random() * 0.4 - 0.2;
             }
             update() {
                 this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.y > canvas.height) this.y = 0;
+                if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) this.reset();
             }
             draw() {
                 ctx.fillStyle = 'rgba(0, 112, 243, 0.4)';
@@ -339,11 +356,6 @@
             requestAnimationFrame(animate);
         }
         animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
     </script>
 </body>
 </html>
