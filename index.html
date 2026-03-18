@@ -25,31 +25,29 @@
 
         #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.3; pointer-events: none; }
 
-        /* HEADER & NAVIGATION */
+        /* NAVIGATION */
         .main-header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border); padding: 12px 5%;
             display: flex; justify-content: space-between; align-items: center;
         }
-
         .nav-links { display: flex; gap: 25px; }
         .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* HAMBURGER MENU */
+        /* MOBILE MENU STYLES */
         .menu-btn { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; z-index: 1100; }
-
         .mobile-nav {
-            position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
+            position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
             background: #030712; z-index: 1050; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; gap: 30px;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-left: 1px solid var(--border);
+            justify-content: center; align-items: center; gap: 25px;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); border-left: 1px solid var(--border);
         }
         .mobile-nav.active { right: 0; }
-        .mobile-nav a { font-size: 1.2rem; color: white; text-decoration: none; font-weight: 700; }
+        .mobile-nav a { font-size: 1.3rem; color: white; text-decoration: none; font-weight: 700; }
 
-        /* --- HERO SECTION RESPONSIVE --- */
+        /* HERO SECTION */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 100px 5% 40px; }
         .hero-container { max-width: 1200px; width: 100%; display: flex; align-items: center; gap: 40px; }
         
@@ -61,41 +59,34 @@
             animation: morph 8s ease-in-out infinite;
             box-shadow: 0 0 40px rgba(0, 112, 243, 0.2);
         }
-        @keyframes morph {
-            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
-        }
 
         .hero-text { flex: 1.2; }
-        .hero-text h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin: 0; }
+        .hero-text h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; margin: 0; }
         .typing-effect { border-right: 3px solid var(--primary); animation: blink 0.7s infinite; }
-        @keyframes blink { 50% { border-color: transparent; } }
-
-        /* --- CARDS & GRID --- */
-        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* BENTO GRID */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px; }
         .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 25px; transition: 0.4s; height: 100%; display: flex; flex-direction: column; }
         .card:hover { border-color: var(--primary); transform: translateY(-5px); background: rgba(255,255,255,0.05); }
         .tag { background: rgba(0, 112, 243, 0.15); color: #60a5fa; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 12px; width: fit-content; }
 
-        /* --- FOOTER --- */
-        .footer { background: #010409; border-top: 1px solid var(--border); padding: 50px 5% 30px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-
-        /* --- REVEAL --- */
+        /* REVEAL ANIMATION */
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- MOBILE ADJUSTMENTS --- */
+        /* RESPONSIVE MOBILE */
         @media (max-width: 992px) {
             .hero-container { flex-direction: column; text-align: center; }
             .hero-text { order: 2; }
-            .profile-box { order: 1; margin-bottom: 20px; }
-            .profile-img { max-width: 180px; } /* Taille réduite sur mobile */
+            .profile-box { order: 1; margin-bottom: 10px; }
+            .profile-img { max-width: 180px; } /* Taille réduite pour visibilité boutons */
             .nav-links { display: none; }
             .menu-btn { display: block; }
-            .hero-text h1 { font-size: 2.2rem; }
-            .hero-text p { font-size: 1rem; margin-bottom: 20px; }
+            .hero-text h1 { font-size: 2.4rem; }
         }
+
+        @keyframes morph { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; } }
+        @keyframes blink { 50% { border-color: transparent; } }
     </style>
 </head>
 <body>
@@ -110,9 +101,9 @@
         
         <nav class="nav-links">
             <a href="#home">ACCUEIL</a>
-            <a href="#parcours">PARCOURS</a>
-            <a href="#projets">PROJETS</a>
+            <a href="#experience">EXPÉRIENCE</a>
             <a href="#expertise">EXPERTISE</a>
+            <a href="#formation">FORMATION</a>
         </nav>
 
         <button class="menu-btn" onclick="toggleMenu()">
@@ -122,10 +113,10 @@
 
     <div class="mobile-nav" id="mobileNav">
         <a href="#home" onclick="toggleMenu()">ACCUEIL</a>
-        <a href="#parcours" onclick="toggleMenu()">PARCOURS</a>
-        <a href="#projets" onclick="toggleMenu()">PROJETS</a>
+        <a href="#experience" onclick="toggleMenu()">EXPÉRIENCE</a>
         <a href="#expertise" onclick="toggleMenu()">EXPERTISE</a>
-        <a href="mailto:randtfabricefaniry@gmail.com" class="w3-button w3-blue w3-round-large">Contact</a>
+        <a href="#formation" onclick="toggleMenu()">FORMATION</a>
+        <a href="mailto:randtfabricefaniry@gmail.com" class="w3-button w3-blue w3-round-large" style="margin-top:20px">Contact</a>
     </div>
 
     <section class="hero" id="home">
@@ -133,12 +124,12 @@
             <div class="hero-text reveal">
                 <div class="tag">FULLSTACK DEVELOPER & LIPSS</div>
                 <h1>Fabrice Faniry<br><span style="color:var(--primary)">RANDT</span></h1>
-                <p style="color: var(--text-dim); margin: 15px auto 25px; line-height: 1.5; max-width: 450px;">
-                    Expert en <span class="typing-effect" id="type"></span><br>
-                    Diplômé en Ingénierie Physique (LIPSS).
+                <p style="color: var(--text-dim); margin: 15px auto 25px; line-height: 1.6; max-width: 500px;">
+                    Expert en <span class="typing-effect" id="type"></span> <br>
+                    Diplômé en Ingénierie Physique de Signaux et Système.
                 </p>
-                <div style="display: flex; gap: 10px; justify-content: center;">
-                    <a href="#projets" class="w3-button w3-blue w3-round-xxlarge w3-small"><b>PROJETS</b></a>
+                <div style="display: flex; gap: 12px; justify-content: center;">
+                    <a href="#experience" class="w3-button w3-blue w3-round-xxlarge w3-small"><b>PARCOURS</b></a>
                     <a href="mailto:randtfabricefaniry@gmail.com" class="w3-button w3-white w3-round-xxlarge w3-small"><b>CONTACT</b></a>
                 </div>
             </div>
@@ -148,44 +139,71 @@
         </div>
     </section>
 
-    <div class="w3-padding-48" id="parcours">
+    <div class="w3-padding-64" id="experience">
         <div class="w3-content" style="max-width:1100px">
-            <h2 class="w3-center reveal" style="font-weight: 800; margin-bottom: 30px;">Parcours <span style="color:var(--primary)">Études</span></h2>
+            <h2 class="w3-center reveal" style="font-weight: 800; margin-bottom: 40px;">Expérience <span style="color:var(--primary)">Professionnelle</span></h2>
             <div class="bento-grid">
                 <div class="card reveal">
-                    <div class="tag">2025</div>
-                    <h3 style="font-weight: 800; margin:0; font-size:1.1rem">Licence Pro LIPSS</h3>
-                    <p style="color: var(--primary); font-size: 0.9rem; margin: 5px 0;">Univ. Antananarivo</p>
-                    <p class="w3-small" style="color: var(--text-dim);">Ingénierie Physique de Signaux et Système. Électronique & IoT.</p>
+                    <div class="tag">Depuis Sept 2025</div>
+                    <h3 style="font-weight: 800; margin:0; font-size:1.2rem">Développeur Fullstack</h3>
+                    <p style="color: var(--primary); font-weight: 600; margin: 5px 0;">Eray Digital</p>
+                    <ul class="w3-small" style="color: var(--text-dim); padding-left: 15px;">
+                        <li>App Web pour Laverie </li>
+                        <li>App Web pour Harena Cosmétiques </li>
+                    </ul>
                 </div>
                 <div class="card reveal">
-                    <div class="tag">2023</div>
-                    <h3 style="font-weight: 800; margin:0; font-size:1.1rem">MS Access & SQL</h3>
-                    <p style="color: var(--primary); font-size: 0.9rem; margin: 5px 0;">BIT Informatique</p>
-                    <p class="w3-small" style="color: var(--text-dim);">Spécialisation en modélisation de données relationnelles.</p>
+                    <div class="tag">Juillet - Sept 2025</div>
+                    <h3 style="font-weight: 800; margin:0; font-size:1.2rem">Designer Graphique</h3>
+                    <p style="color: var(--accent); font-weight: 600; margin: 5px 0;">Eray Digital</p>
+                    <p class="w3-small" style="color: var(--text-dim);">Réalisation de maquettes web, logos, chartes graphiques et cartes de visite.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="tag">Juin 2025</div>
+                    <h3 style="font-weight: 800; margin:0; font-size:1.2rem">Formation WordPress</h3>
+                    <p style="color: #ff7900; font-weight: 600; margin: 5px 0;">Orange Digital Center</p>
+                    <p class="w3-small" style="color: var(--text-dim);">Création de sites web dynamiques et gestion CMS.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="w3-padding-48" id="expertise">
+    <div class="w3-padding-64" id="expertise" style="background: rgba(255,255,255,0.01)">
         <div class="w3-content" style="max-width:1100px">
-            <h2 class="w3-center reveal" style="font-weight: 800; margin-bottom: 30px;">Mon <span style="color:var(--primary)">Expertise</span></h2>
+            <h2 class="w3-center reveal" style="font-weight: 800; margin-bottom: 40px;">Compétences <span style="color:var(--primary)">Clés</span></h2>
             <div class="bento-grid">
                 <div class="card reveal">
-                    <i data-lucide="code-2" style="color:var(--primary); margin-bottom:10px"></i>
-                    <h4 style="font-weight: 800; margin:0">Fullstack Web</h4>
-                    <p class="w3-small" style="color: var(--text-dim);">Symfony, React, PHP, SQL, WordPress.</p>
+                    <i data-lucide="code-2" style="color:var(--primary); margin-bottom:15px"></i>
+                    <h4 style="font-weight: 800; margin:0">Frameworks & Dev</h4>
+                    <p class="w3-small" style="color: var(--text-dim);">Symfony, React/JS, Python, C/C++, PHP.</p>
                 </div>
                 <div class="card reveal">
-                    <i data-lucide="cpu" style="color:#10b981; margin-bottom:10px"></i>
-                    <h4 style="font-weight: 800; margin:0">IoT & Maintenance</h4>
-                    <p class="w3-small" style="color: var(--text-dim);">ESP32, Arduino, Cyber (Root-Me).</p>
+                    <i data-lucide="layers" style="color:var(--accent); margin-bottom:15px"></i>
+                    <h4 style="font-weight: 800; margin:0">UX/UI Design</h4>
+                    <p class="w3-small" style="color: var(--text-dim);">Photoshop, Illustrator, Adobe XD.</p>
                 </div>
                 <div class="card reveal">
-                    <i data-lucide="palette" style="color:var(--accent); margin-bottom:10px"></i>
-                    <h4 style="font-weight: 800; margin:0">Graphisme UI</h4>
-                    <p class="w3-small" style="color: var(--text-dim);">Photoshop, Illustrator, Design Moderne.</p>
+                    <i data-lucide="shield-check" style="color:#10b981; margin-bottom:15px"></i>
+                    <h4 style="font-weight: 800; margin:0">Sécurité & Réseaux</h4>
+                    <p class="w3-small" style="color: var(--text-dim);">Atouts en Cybersécurité et administration réseaux.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-padding-64" id="formation">
+        <div class="w3-content" style="max-width:1100px">
+            <h2 class="w3-center reveal" style="font-weight: 800; margin-bottom: 40px;">Éducation</h2>
+            <div class="bento-grid">
+                <div class="card reveal">
+                    <div class="tag">2025</div>
+                    <h3 style="font-weight: 800; margin:0; font-size:1.1rem">Licence Pro (LIPSS)</h3>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Université d'Antananarivo </p>
+                </div>
+                <div class="card reveal">
+                    <div class="tag">2023</div>
+                    <h3 style="font-weight: 800; margin:0; font-size:1.1rem">Microsoft Access</h3>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">BIT Informatique Tsiadana </p>
                 </div>
             </div>
         </div>
@@ -195,25 +213,25 @@
         <div class="footer-grid">
             <div>
                 <h2 style="font-weight: 800; margin:0">RANDT.</h2>
-                <div style="margin-top:20px">
-                    <a href="https://github.com/FabriceFaniryRANDT4050" style="color:white; font-size:20px; margin-right:15px"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/fabrice-faniry-randriamahatratra-8aa11727" style="color:white; font-size:20px"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
+                <p style="color:var(--text-dim); font-size: 13px; margin-top:15px;">
+                    Lot II G10 Ter Ambatomaro, Antananarivo.
+                </p>
             </div>
             <div>
                 <h4 style="font-weight: 800; font-size: 1rem;">Contact</h4>
-                <p class="w3-small" style="color:var(--text-dim)">Antananarivo, Madagascar<br>+261 38 41 570 73</p>
+                <p class="w3-small" style="color:var(--text-dim)">+261 38 41 570 73 </p>
+                <p class="w3-small" style="color:var(--text-dim)">randtfabricefaniry@gmail.com </p>
             </div>
-        </div>
-        <div class="w3-center" style="border-top:1px solid var(--border); margin-top:30px; padding-top:20px; font-size:10px; color:var(--text-dim)">
-            © 2026 Fabrice Faniry RANDT | Expert Tech.
+            <div style="text-align: right;">
+                <a href="https://github.com/FabriceFaniryRANDT4050" style="color:white; font-size:20px; margin-left:15px"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/fabrice-faniry-randriamahatratra-8aa11727" style="color:white; font-size:20px; margin-left:15px"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // Menu Toggle
         function toggleMenu() {
             const nav = document.getElementById('mobileNav');
             const icon = document.getElementById('menu-icon');
@@ -222,22 +240,21 @@
             icon.classList.toggle('fa-times');
         }
 
-        // Typing Effect
+        // Typing Effect 
         const typeTarget = document.getElementById('type');
-        const words = ["Symfony & React", "IoT (ESP32)", "Design Graphique", "Cybersécurité"];
+        const words = ["Symfony & React", "Adobe XD Design", "WordPress", "Cybersecurity"];
         let wordIdx = 0, charIdx = 0, isDeleting = false;
 
         function type() {
             const currentWord = words[wordIdx];
             typeTarget.textContent = isDeleting ? currentWord.substring(0, charIdx - 1) : currentWord.substring(0, charIdx + 1);
             charIdx = isDeleting ? charIdx - 1 : charIdx + 1;
-            if (!isDeleting && charIdx === currentWord.length) { isDeleting = true; setTimeout(type, 1500); }
+            if (!isDeleting && charIdx === currentWord.length) { isDeleting = true; setTimeout(type, 1800); }
             else if (isDeleting && charIdx === 0) { isDeleting = false; wordIdx = (wordIdx + 1) % words.length; setTimeout(type, 500); }
             else { setTimeout(type, isDeleting ? 40 : 80); }
         }
         type();
 
-        // Scroll Reveal
         function reveal() {
             document.querySelectorAll(".reveal").forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add("active");
@@ -245,20 +262,6 @@
         }
         window.addEventListener("scroll", reveal);
         window.onload = reveal;
-
-        // Particle background (optimisé)
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        let particles = [];
-        class P {
-            constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.s = Math.random()*1.5; this.vx = Math.random()*0.3-0.15; this.vy = Math.random()*0.3-0.15; }
-            u() { this.x += this.vx; this.y += this.vy; if (this.x > canvas.width) this.x=0; if (this.y > canvas.height) this.y=0; }
-            d() { ctx.fillStyle = 'rgba(0,112,243,0.3)'; ctx.beginPath(); ctx.arc(this.x, this.y, this.s, 0, Math.PI*2); ctx.fill(); }
-        }
-        for(let i=0; i<50; i++) particles.push(new P());
-        function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p => { p.u(); p.d(); }); requestAnimationFrame(animate); }
-        animate();
     </script>
 </body>
 </html>
